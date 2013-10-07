@@ -1,0 +1,80 @@
+# Android gitignore
+# https://github.com/github/gitignore/blob/master/Android.gitignore
+
+# built application files
+*.apk
+*.ap_
+
+# files for the dex VM
+*.dex
+
+# Java class files
+*.class
+
+# generated files
+bin/
+gen/
+
+# Local configuration file (sdk path, etc)
+local.properties
+
+
+# Eclipse gitignore
+# https://github.com/github/gitignore/blob/master/Global/Eclipse.gitignore
+
+#*.pydevproject
+#.project
+.metadata
+#bin/**
+#tmp/**
+#tmp/**/*
+#*.tmp
+#*.bak
+#*.swp
+#*~.nib
+#local.properties
+#.classpath
+#.settings/
+#.loadpath
+
+# External tool builders
+.externalToolBuilders/
+
+# Locally stored "Eclipse launch configurations"
+*.launch
+
+# CDT-specific
+.cproject
+
+# PDT-specific
+.buildpath
+
+
+# Gedit
+*.*~
+
+# Dolphin
+.directory
+
+
+#
+# GWT gitignore
+# https://github.com/github/gitignore/blob/master/GWT.gitignore
+.gwt
+
+*.class
+
+# Package Files #
+#*.jar
+*.war
+
+# gwt caches and compiled units #
+war/gwt_bree/
+gwt-unitCache/
+
+# boilerplate generated classes #
+.apt_generated/
+
+# more caches and things from deploy #
+war/WEB-INF/deploy/
+war/WEB-INF/classes/
