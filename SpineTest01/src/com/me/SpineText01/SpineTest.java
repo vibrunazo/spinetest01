@@ -58,13 +58,22 @@ public class SpineTest implements ApplicationListener {
 	}
 
 	private void ini() {
-		atlas = new TextureAtlas(Gdx.files.internal("data/spine/spineboy.atlas"));
+		// "data/spine/spineboy.atlas"
+		// "data/spine/spineboy.skel"
+
+		// "data/spine/ball/skeleton.atlas"
+		// "data/spine/ball/skeleton.skel"
+		String atlasfile =  "data/spine/ball/skeleton.atlas";
+		String skfile = "data/spine/ball/skeleton.skel";
+		
+		atlas = new TextureAtlas(Gdx.files.internal(atlasfile));
 		sb = new SkeletonBinary(atlas);
 		sd = sb.readSkeletonData(Gdx.files
-                .internal("data/spine/spineboy.skel"));
+                .internal(skfile));
 		
 		skeleton = new Skeleton(sd);
-		walkAnimation = sd.findAnimation("walk");
+//		walkAnimation = sd.findAnimation("walk");
+		walkAnimation = sd.findAnimation("stand01");
 		animationTime = 0;
 		renderer = new SkeletonRenderer();
 		
