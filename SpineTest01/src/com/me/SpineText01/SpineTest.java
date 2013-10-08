@@ -33,6 +33,9 @@ public class SpineTest implements ApplicationListener {
 	private com.esotericsoftware.spine.SkeletonRenderer renderer;
 	private Bone root;
 	
+	public int VIRTUAL_WIDTH = 800;
+	public int VIRTUAL_HEIGHT = 480;
+	
 	@Override
 	public void create() {		
 		float w = Gdx.graphics.getWidth();
@@ -47,9 +50,9 @@ public class SpineTest implements ApplicationListener {
 		TextureRegion region = new TextureRegion(texture, 0, 0, 512, 275);
 		
 		sprite = new Sprite(region);
-		sprite.setSize(0.9f, 0.9f * sprite.getHeight() / sprite.getWidth());
-		sprite.setOrigin(sprite.getWidth()/2, sprite.getHeight()/2);
-		sprite.setPosition(-sprite.getWidth()/2, -sprite.getHeight()/2);
+//		sprite.setSize(0.9f, 0.9f * sprite.getHeight() / sprite.getWidth());
+//		sprite.setOrigin(sprite.getWidth()/2, sprite.getHeight()/2);
+//		sprite.setPosition(-sprite.getWidth()/2, -sprite.getHeight()/2);
 		
 		ini();
 	}
@@ -66,7 +69,7 @@ public class SpineTest implements ApplicationListener {
 		renderer = new SkeletonRenderer();
 		
 		root = skeleton.getRootBone();
-		root.setX(100);
+		root.setX(20);
 		root.setY(20);
 		
 		skeleton.updateWorldTransform();
@@ -83,19 +86,23 @@ public class SpineTest implements ApplicationListener {
 		Gdx.gl.glClearColor(1, 1, 1, 1);
 		Gdx.gl.glClear(GL10.GL_COLOR_BUFFER_BIT);
 		
-//		batch.setProjectionMatrix(camera.combined);
+		camera.update();
+		batch.setProjectionMatrix(camera.combined);
 		batch.begin();
 		
 		delta = Gdx.graphics.getDeltaTime();
 		lastTime = animationTime;
 		animationTime += delta;
+//		root.setX(((root.getX() + 230 * delta)%(VIRTUAL_WIDTH*1.2f)));
+		root.setX((230 * animationTime)%(VIRTUAL_WIDTH + 400) - 200);
 //		walkAnimation.apply(skeleton, animationTime, true); // true is for loop
 		walkAnimation.apply(skeleton, lastTime, animationTime, true, null);
 		skeleton.updateWorldTransform();
         skeleton.update(delta);
 //		renderSkeleton(skeleton);
 		
-        sprite.setX(200);sprite.setY(200);
+//        sprite.setPosition(-40, -40);
+//        sprite.setScale(10);
 		sprite.draw(batch);
 		renderer.draw(batch, skeleton);
 		batch.end();
@@ -103,8 +110,11 @@ public class SpineTest implements ApplicationListener {
 
 	@Override
 	public void resize(int width, int height) {
+		camera = new OrthographicCamera();
+		camera.setToOrtho(false, VIRTUAL_WIDTH, VIRTUAL_HEIGHT);
+		
 		batch.setProjectionMatrix(camera.combined);
-		batch.getProjectionMatrix().setToOrtho2D(0, 0, width, height);
+//		batch.getProjectionMatrix().setToOrtho2D(0, 0, width, height);
 //		renderer.setProjectionMatrix(batch.getProjectionMatrix());
 	}
 
