@@ -36,6 +36,8 @@ public class SpineTest implements ApplicationListener {
 	public int VIRTUAL_WIDTH = 800;
 	public int VIRTUAL_HEIGHT = 480;
 	private Animation winkAnimation;
+	private float winkTime;
+	private float lastWinkTime;
 	
 	@Override
 	public void create() {		
@@ -77,6 +79,7 @@ public class SpineTest implements ApplicationListener {
 		walkAnimation = sd.findAnimation("stand01");
 		winkAnimation = sd.findAnimation("wink");
 		animationTime = 0;
+		winkTime = 0;
 		renderer = new SkeletonRenderer();
 		
 		root = skeleton.getRootBone();
@@ -104,11 +107,22 @@ public class SpineTest implements ApplicationListener {
 		delta = Gdx.graphics.getDeltaTime();
 		lastTime = animationTime;
 		animationTime += delta;
+		
+		if (winkTime > 1.5) {
+			log("A winkTime: " + winkTime + " last: " + lastWinkTime + " delta: " + delta);
+			winkTime = 0;
+		}
+		lastWinkTime = winkTime;
+		winkTime += delta;
+		
+//		log("B winkTime: " + winkTime + " last: " + lastWinkTime + " delta: " + delta);
 //		root.setX(((root.getX() + 230 * delta)%(VIRTUAL_WIDTH*1.2f)));
 		root.setX((230 * animationTime)%(VIRTUAL_WIDTH + 400) - 200);
 //		walkAnimation.apply(skeleton, animationTime, true); // true is for loop
 		walkAnimation.apply(skeleton, lastTime, animationTime, true, null);
-		winkAnimation.apply(skeleton, lastTime*10, animationTime*10, true, null);
+		winkAnimation.apply(skeleton, lastWinkTime*10, winkTime*10, false, null);
+//		winkAnimation.apply(skeleton, lastTime*10, animationTime*10, true, null);
+		winkAnimation.getDuration();
 		skeleton.updateWorldTransform();
         skeleton.update(delta);
 //		renderSkeleton(skeleton);
@@ -136,5 +150,12 @@ public class SpineTest implements ApplicationListener {
 
 	@Override
 	public void resume() {
+	}
+	
+	/**Logs text to Gdx.app.log()
+	 * @param text
+	 */
+	private void log(String text) {
+		Gdx.app.log("gdxtest", text);
 	}
 }
