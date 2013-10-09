@@ -35,6 +35,7 @@ public class SpineTest implements ApplicationListener {
 	
 	public int VIRTUAL_WIDTH = 800;
 	public int VIRTUAL_HEIGHT = 480;
+	private Animation winkAnimation;
 	
 	@Override
 	public void create() {		
@@ -74,6 +75,7 @@ public class SpineTest implements ApplicationListener {
 		skeleton = new Skeleton(sd);
 //		walkAnimation = sd.findAnimation("walk");
 		walkAnimation = sd.findAnimation("stand01");
+		winkAnimation = sd.findAnimation("wink");
 		animationTime = 0;
 		renderer = new SkeletonRenderer();
 		
@@ -106,6 +108,7 @@ public class SpineTest implements ApplicationListener {
 		root.setX((230 * animationTime)%(VIRTUAL_WIDTH + 400) - 200);
 //		walkAnimation.apply(skeleton, animationTime, true); // true is for loop
 		walkAnimation.apply(skeleton, lastTime, animationTime, true, null);
+		winkAnimation.apply(skeleton, lastTime*10, animationTime*10, true, null);
 		skeleton.updateWorldTransform();
         skeleton.update(delta);
 //		renderSkeleton(skeleton);

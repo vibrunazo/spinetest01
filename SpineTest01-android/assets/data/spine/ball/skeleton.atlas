@@ -5,15 +5,99 @@ filter: Linear,Linear
 repeat: none
 data/ballbase01
   rotate: false
-  xy: 2, 2
+  xy: 2, 254
   size: 256, 256
   orig: 256, 256
   offset: 0, 0
   index: -1
 data/balleyes01
   rotate: false
-  xy: 260, 2
+  xy: 260, 254
   size: 256, 256
   orig: 256, 256
   offset: 0, 0
+  index: -1
+data/eyelid01
+  rotate: false
+  xy: 518, 382
+  size: 256, 128
+  orig: 256, 256
+  offset: 0, 128
+  index: -1
+data/eyelid02
+  rotate: true
+  xy: 2, 2
+  size: 250, 100
+  orig: 256, 256
+  offset: 3, 156
+  index: -1
+data/eyelid03
+  rotate: false
+  xy: 518, 300
+  size: 238, 80
+  orig: 256, 256
+  offset: 9, 176
+  index: -1
+data/eyelid04
+  rotate: false
+  xy: 206, 62
+  size: 218, 60
+  orig: 256, 256
+  offset: 19, 196
+  index: -1
+data/eyelid05
+  rotate: false
+  xy: 518, 258
+  size: 186, 40
+  orig: 256, 256
+  offset: 35, 216
+  index: -1
+data/eyelid06
+  rotate: true
+  xy: 464, 114
+  size: 138, 20
+  orig: 256, 256
+  offset: 59, 236
+  index: -1
+data/loweyelid01
+  rotate: false
+  xy: 206, 124
+  size: 256, 128
+  orig: 256, 256
+  offset: 0, 0
+  index: -1
+data/loweyelid02
+  rotate: true
+  xy: 104, 2
+  size: 250, 100
+  orig: 256, 256
+  offset: 3, 0
+  index: -1
+data/loweyelid03
+  rotate: false
+  xy: 776, 430
+  size: 238, 80
+  orig: 256, 256
+  offset: 9, 0
+  index: -1
+data/loweyelid04
+  rotate: false
+  xy: 776, 368
+  size: 218, 60
+  orig: 256, 256
+  offset: 19, 0
+  index: -1
+data/loweyelid05
+  rotate: false
+  xy: 206, 20
+  size: 186, 40
+  orig: 256, 256
+  offset: 35, 0
+  index: -1
+data/loweyelid06
+  rotate: true
+  xy: 486, 114
+  size: 138, 20
+  orig: 256, 256
+  offset: 59, 0
   index: -1
