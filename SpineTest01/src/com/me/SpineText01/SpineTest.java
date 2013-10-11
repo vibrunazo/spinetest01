@@ -2,6 +2,7 @@ package com.me.SpineText01;
 
 import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.GL10;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
@@ -15,6 +16,7 @@ import com.esotericsoftware.spine.Bone;
 import com.esotericsoftware.spine.Skeleton;
 import com.esotericsoftware.spine.SkeletonBinary;
 import com.esotericsoftware.spine.SkeletonData;
+import com.esotericsoftware.spine.SkeletonJson;
 import com.esotericsoftware.spine.SkeletonRenderer;
 
 public class SpineTest implements ApplicationListener {
@@ -68,13 +70,17 @@ public class SpineTest implements ApplicationListener {
 		// "data/spine/ball/skeleton.skel"
 		String atlasfile =  "data/spine/ball/skeleton.atlas";
 		String skfile = "data/spine/ball/skeleton.skel";
+		String jsonfile = "data/spine/ball/skeleton.json";
 		
 		atlas = new TextureAtlas(Gdx.files.internal(atlasfile));
 		sb = new SkeletonBinary(atlas);
-		sd = sb.readSkeletonData(Gdx.files
-                .internal(skfile));
+//		sd = sb.readSkeletonData(Gdx.files
+//                .internal(skfile));
+		SkeletonJson json = new SkeletonJson(atlas);
+		sd = json.readSkeletonData(Gdx.files.internal(jsonfile)); //.readSkeletonData("mySkeleton.json");
 		
 		skeleton = new Skeleton(sd);
+		skeleton.setSkin("eyes01");
 //		walkAnimation = sd.findAnimation("walk");
 		walkAnimation = sd.findAnimation("stand01");
 		winkAnimation = sd.findAnimation("wink");
