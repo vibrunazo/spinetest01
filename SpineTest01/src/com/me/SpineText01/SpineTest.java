@@ -3,6 +3,7 @@ package com.me.SpineText01;
 import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL10;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
@@ -18,6 +19,7 @@ import com.esotericsoftware.spine.SkeletonBinary;
 import com.esotericsoftware.spine.SkeletonData;
 import com.esotericsoftware.spine.SkeletonJson;
 import com.esotericsoftware.spine.SkeletonRenderer;
+import com.esotericsoftware.spine.Slot;
 
 public class SpineTest implements ApplicationListener {
 	private OrthographicCamera camera;
@@ -40,6 +42,8 @@ public class SpineTest implements ApplicationListener {
 	private Animation winkAnimation;
 	private float winkTime;
 	private float lastWinkTime;
+	private Slot slot;
+	private Color color;
 	
 	@Override
 	public void create() {		
@@ -92,6 +96,13 @@ public class SpineTest implements ApplicationListener {
 		root.setX(20);
 		root.setY(20);
 		
+		log("before color: " + color);
+		slot = skeleton.findSlot("ballbase01");
+		color = slot.getColor();
+		color.set(1, 0, 0, 1);
+		color.r = 1f;color.g = 0f;color.b = 1f;
+		log("after color: " + color);
+		
 		skeleton.updateWorldTransform();
 	}
 
@@ -116,6 +127,7 @@ public class SpineTest implements ApplicationListener {
 		
 		if (winkTime > 1.5) {
 			log("A winkTime: " + winkTime + " last: " + lastWinkTime + " delta: " + delta);
+			log("color: " + color);
 			winkTime = 0;
 		}
 		lastWinkTime = winkTime;
